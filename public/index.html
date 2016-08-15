@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Return Path Sample App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/ng-template" id="add-form.tmpl">
+        <form name="userForm" ng-submit="mainVm.submit()" novalidate>
+
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" name="firstName" id="firstName" ng-model="mainVm.newUser.firstName" placeholder="Your First Name" required minlength="3">
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" name="lastName" id="lastName" ng-model="mainVm.newUser.lastName" placeholder="Your Last Name" required minlength="3">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" id="email" ng-model="mainVm.newUser.email" placeholder="example@domain.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" name="city" id="city" ng-model="mainVm.newUser.city" placeholder="Your City" required>
+            </div>
+
+            <div class="form-group">
+                <label for="state">State</label>
+                <input type="text" class="form-control" name="state" id="state" ng-model="mainVm.newUser.state" placeholder="Your State" required>
+            </div>
+
+            <input type="submit" class="btn btn-default" value="{{!mainVm.newUser._id ? 'Add User' : 'Update User'}}" ng-disabled="userForm.$invalid">
+        </form>
+    </script>
+</head>
+
+<body>
+<div class="jumbotron" style="text-align: center">
+    <h1>Return Path Sample App</h1>
+    <p>This is a simple MEAN Stack web application with REST API written using Node.js, Express and MongoDB. </p>
+    <p>It serves the purpose of performing CRUD operations on database and displays the result simultaneously without reloading the page.</p>
+</div>
+<div ng-controller="UsersController as mainVm">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-sm-6" ng-include="'add-form.tmpl'">
+
+            </div>
+            <div class="col-sm-6" ng-include="'views/users.tmpl.html'">
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+<script src="app.js"></script>
+<script src="controllers/users.controller.js"></script>
+<script src="services/user.service.js"></script>
+</body>
+
+</html>
